@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import boto
 import boto.s3.connection
 access_key = "C4B4D3E4H355VTDTQXRF"

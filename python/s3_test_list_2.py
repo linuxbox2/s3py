@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import os
 import boto
 import boto.s3.connection
