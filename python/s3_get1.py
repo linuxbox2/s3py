@@ -19,4 +19,8 @@ calling_format = boto.s3.connection.OrdinaryCallingFormat(),
 b = conn.get_bucket('sorry_dave')
 k = Key(b)
 k.key = 'obj_t1'
-k.set_contents_from_string('now is the time for all good foo')
+
+print "object: {key}\t{value}".format(
+    key = k.key,
+    value = k.get_contents_as_string(),
+)
