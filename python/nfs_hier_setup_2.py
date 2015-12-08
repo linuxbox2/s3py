@@ -36,3 +36,9 @@ for oname in fnames:
         else:
                 oval = "test file %s" % (oname)
         k.set_contents_from_string(oval)
+
+# overwrite one
+k = Key(bucket)
+k.key = "foo/bar/f2"
+k.set_contents_from_string("test file %s" % (k.key))
+k.set_contents_from_string("test file %s overw" % (k.key))
