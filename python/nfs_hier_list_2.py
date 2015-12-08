@@ -50,7 +50,8 @@ for p in prefixes:
         for k in objs:
                 print k.name
 
-print "match file or directory w/candidate name (i.e., lookup)"
-objs = b.get_all_keys(prefix="foo/bar/baz/sasquatch", delimiter="/")
+p = "foo/bar/baz/sasquatch"
+print "match file or directory prefix='%s' (i.e., lookup)" % (p)
+objs = b.get_all_keys(prefix=p, delimiter="/")
 for k in objs:
         print k.name
