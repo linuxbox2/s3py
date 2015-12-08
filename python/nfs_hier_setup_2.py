@@ -25,7 +25,8 @@ fnames = ["foo/bar/baz/quux",
           "foo/f2",
           "foo/bar/f1",
           "foo/bar/d1/",
-          "foo/bar/baz/sasquatch"]
+          "foo/bar/baz/sasquatch",
+          "foo/bar/baz/sasquatch/"]
 
 for oname in fnames:
         k = Key(bucket)

@@ -17,6 +17,9 @@ is_secure=False,
 calling_format = boto.s3.connection.OrdinaryCallingFormat(),
 )
 
+b = conn.get_bucket("nfsroot")
+
+# prefixes
 prefixes = ["",
             "/",
             "nfsroot/foo",
@@ -27,10 +30,27 @@ prefixes = ["",
             "foo/bar/baz",
             "foo/bar/baz/quux"]
 
-b = conn.get_bucket("nfsroot")
-
 for p in prefixes:
         print "Listing objects with prefix '%s'" % (p)
         objs = b.list(prefix = p)
         for key in objs:
                 print ' ' * 4, key.name
+
+# common prefixes
+prefixes = ["",
+            "/",
+            "foo/",
+            "foo/bar/",
+            "foo/bar/baz/",
+            "foo/bar/baz/quux/"]
+
+for p in prefixes:
+        print "Listing objects sharing prefix '%s' with Delimiter '/'" % (p)
+        objs = b.get_all_keys(prefix=p, delimiter="/")
+        for k in objs:
+                print k.name
+
+print "match file or directory w/candidate name (i.e., lookup)"
+objs = b.get_all_keys(prefix="foo/bar/baz/sasquatch", delimiter="/")
+for k in objs:
+        print k.name
