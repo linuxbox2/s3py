@@ -25,10 +25,16 @@ fnames = ["foo/bar/baz/quux",
           "foo/f2",
           "foo/bar/f1",
           "foo/bar/d1/",
+          "foo/bar/baz/hungry",
+          "foo/bar/baz/hungry/",
+          "foo/bar/baz/momma",
+          "foo/bar/baz/bear/",
           "foo/bar/baz/sasquatch",
-          "foo/bar/baz/sasquatch/"]
+          "foo/bar/baz/sasquatch/",
+          "foo/bar/baz/frobozz"]
 
 for oname in fnames:
+        print "creating obj: %s" % (oname)
         k = Key(bucket)
         k.key = oname
         if oname[:-1] == "/":
