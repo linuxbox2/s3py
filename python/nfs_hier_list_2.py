@@ -17,7 +17,11 @@ is_secure=False,
 calling_format = boto.s3.connection.OrdinaryCallingFormat(),
 )
 
-b = conn.get_bucket("nfsroot")
+try:
+        bucket_name = os.environ['RGW_NFS_BUCKET']
+except:
+	bucket_name = 'nfsroot'
+b = conn.get_bucket(bucket_name)
 
 # prefixes
 prefixes = ["",

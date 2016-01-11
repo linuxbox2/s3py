@@ -17,15 +17,16 @@ is_secure=False,
 calling_format = boto.s3.connection.OrdinaryCallingFormat(),
 )
 
-nobjects = 0
+bname = "large_bucket"
+bucket = conn.create_bucket(bname)
 
-try:
-        bucket_name = os.environ['RGW_NFS_BUCKET']
-except:
-	bucket_name = 'nfsroot'
-
-bucket = conn.get_bucket(bucket_name)
-print "bucket %s" % bucket.name
-for o in bucket.list():
-        print "obj: %s" % (o.key)
-        nobjects += 1
+for ix in range (0,5000):
+        oname = "foo_dir/f_%s" %(ix)
+        print "creating obj: %s" % (oname)
+        k = Key(bucket)
+        k.key = oname
+        if oname[:-1] == "/":
+                oval = "test directory %s" % (oname)
+        else:
+                oval = "test file %s" % (oname)
+        k.set_contents_from_string(oval)

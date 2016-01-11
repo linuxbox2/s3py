@@ -16,9 +16,20 @@ host = rgw_host,
 is_secure=False,
 calling_format = boto.s3.connection.OrdinaryCallingFormat(),
 )
-b = conn.get_bucket('sorry_dave')
+
+try:
+    bucket_name = os.environ['RGW_NFS_BUCKET']
+except:
+    bucket_name = 'sorry_dave'
+
+try:
+    object_name = os.environ['RGW_NFS_OBJECT']
+except:
+    object_name = 'jocaml'
+
+b = conn.get_bucket(bucket_name)
 k = Key(b)
-k.key = 'jocaml'
+k.key = object_name
 
 print "object: {key}\t{value}".format(
     key = k.key,
